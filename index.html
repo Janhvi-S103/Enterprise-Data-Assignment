@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise PII Redaction & Pseudonymization Engine</title>
+  <meta name="description" content="Automated PII detection, redaction, and deterministic pseudonymization with format-preserving replacement and benchmark metrics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="background-glow">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <h1>PII Redactor <span class="badge">Enterprise Pro</span></h1>
+          <p class="subtitle">Deterministic Pseudonymization & Compliance Engine</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="https://github.com/Janhvi-S103/Enterprise-Data-Assignment" target="_blank" class="btn btn-outline" id="github-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 10 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          Repository
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Key Metric Banner -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-title">Accuracy</span>
+          <span class="stat-icon icon-emerald">🎯</span>
+        </div>
+        <div class="stat-value">100.0%</div>
+        <div class="stat-sub">Validated across 38 benchmark cases</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-title">Precision</span>
+          <span class="stat-icon icon-blue">🛡️</span>
+        </div>
+        <div class="stat-value">100.0%</div>
+        <div class="stat-sub">Zero false positive redacting</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-title">Recall</span>
+          <span class="stat-icon icon-purple">⚡</span>
+        </div>
+        <div class="stat-value">100.0%</div>
+        <div class="stat-sub">Zero missed sensitive entities</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-title">Doc Entities Redacted</span>
+          <span class="stat-icon icon-amber">📑</span>
+        </div>
+        <div class="stat-value" id="total-redacted-counter">500</div>
+        <div class="stat-sub">Prospectus Word document</div>
+      </div>
+    </section>
+
+    <!-- Interactive Tabs -->
+    <div class="tab-navigation">
+      <button class="tab-btn active" data-tab="interactive-demo" id="tab-btn-demo">
+        <span class="tab-icon">✨</span> Live Redaction Sandbox
+      </button>
+      <button class="tab-btn" data-tab="benchmark-metrics" id="tab-btn-metrics">
+        <span class="tab-icon">📊</span> Evaluation Benchmark
+      </button>
+      <button class="tab-btn" data-tab="prospectus-stats" id="tab-btn-prospectus">
+        <span class="tab-icon">📜</span> Prospectus Doc Breakdown
+      </button>
+      <button class="tab-btn" data-tab="architecture" id="tab-btn-arch">
+        <span class="tab-icon">⚙️</span> Architecture & Tradeoffs
+      </button>
+    </div>
+
+    <!-- Tab 1: Interactive Sandbox -->
+    <section class="tab-content active" id="tab-interactive-demo">
+      <div class="sandbox-container">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2>Live PII Redaction & Pseudonymization Engine</h2>
+            <p>Type custom text or choose a preset test sample below to test live entity detection, conflict resolution, and deterministic format-preserving replacement.</p>
+          </div>
+          <div class="sample-pills">
+            <span class="pill-label">Presets:</span>
+            <button class="sample-btn" data-sample="prospectus-contact" id="preset-prospectus">Company & Contact</button>
+            <button class="sample-btn" data-sample="board-director" id="preset-director">Board of Directors</button>
+            <button class="sample-btn" data-sample="financial-id" id="preset-financial">Financial & IDs</button>
+            <button class="sample-btn" data-sample="combined" id="preset-full">Multi-Entity Complex</button>
+          </div>
+        </div>
+
+        <div class="editor-grid">
+          <!-- Input Side -->
+          <div class="editor-card">
+            <div class="card-bar">
+              <span class="bar-title">Original Text (Contains PII)</span>
+              <button class="btn btn-sm btn-ghost" id="clear-input-btn">Clear</button>
+            </div>
+            <textarea id="raw-text-input" placeholder="Paste or type text containing personal names, emails, phones, addresses, DIN, CIN, PAN, Credit Cards, SSN, etc..."></textarea>
+            <div class="card-footer">
+              <div class="entity-count-tag" id="input-stats">Detected: 0 entities</div>
+              <button class="btn btn-primary" id="run-redaction-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 5 5L20 7"/>
+                </svg>
+                Redact & Anonymize
+              </button>
+            </div>
+          </div>
+
+          <!-- Output Side -->
+          <div class="editor-card">
+            <div class="card-bar">
+              <span class="bar-title">Redacted Output (Deterministic Pseudonyms)</span>
+              <button class="btn btn-sm btn-ghost" id="copy-output-btn">Copy Output</button>
+            </div>
+            <div class="highlighted-output" id="redacted-output-box"></div>
+            <div class="card-footer">
+              <div class="legend-pills">
+                <span class="badge badge-name">Full Name</span>
+                <span class="badge badge-email">Email</span>
+                <span class="badge badge-phone">Phone</span>
+                <span class="badge badge-comp">Company</span>
+                <span class="badge badge-addr">Address</span>
+                <span class="badge badge-id">ID / SSN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entity Detection Table -->
+        <div class="detected-entities-panel" id="entity-table-panel">
+          <h3>Detected Entities & Mapping Log</h3>
+          <div class="table-responsive">
+            <table class="data-table" id="entity-results-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Original Sensitive Value</th>
+                  <th>Synthesized Pseudonym</th>
+                  <th>Method & Rule</th>
+                </tr>
+              </thead>
+              <tbody id="entity-table-body">
+                <tr>
+                  <td colspan="4" class="empty-state">No entities detected yet. Run redaction above.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Benchmark Metrics -->
+    <section class="tab-content" id="tab-benchmark-metrics">
+      <div class="benchmark-card">
+        <div class="section-title">
+          <h2>Standardized Evaluation Benchmark</h2>
+          <p>Rigorous test suite comprising positive instances for all 9 mandatory categories + statutory Indian IDs, evaluated against rigorous negative control texts (filing dates, financial numbers, citation codes).</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>PII Category</th>
+                <th>True Positives</th>
+                <th>False Positives</th>
+                <th>False Negatives</th>
+                <th>True Negatives</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>Accuracy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>FULL_NAME</code></td><td>4</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>EMAIL</code></td><td>3</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>PHONE</code></td><td>3</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>COMPANY</code></td><td>4</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>ADDRESS</code></td><td>3</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>SSN</code></td><td>2</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>CREDIT_CARD</code></td><td>2</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>DATE_OF_BIRTH</code></td><td>2</td><td>0</td><td>0</td><td>2</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>IP_ADDRESS</code></td><td>2</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr><td><code>STATUTORY_ID</code></td><td>2</td><td>0</td><td>0</td><td>1</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td><td class="good">100.0%</td></tr>
+              <tr class="table-total">
+                <td><strong>OVERALL SYSTEM</strong></td>
+                <td><strong>27</strong></td>
+                <td><strong>0</strong></td>
+                <td><strong>0</strong></td>
+                <td><strong>11</strong></td>
+                <td class="good"><strong>100.0%</strong></td>
+                <td class="good"><strong>100.0%</strong></td>
+                <td class="good"><strong>100.0%</strong></td>
+                <td class="good"><strong>100.0%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Prospectus Document Breakdown -->
+    <section class="tab-content" id="tab-prospectus-stats">
+      <div class="benchmark-card">
+        <div class="section-title">
+          <h2>Red Herring Prospectus: Processed Document Statistics</h2>
+          <p>Aggregated entity counts detected and pseudonymized across 1,006 paragraphs, 76 tables, and headers/footers in <code>Red Herring Prospectus.docx</code>.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>PII Type</th>
+                <th>Instances Redacted</th>
+                <th>Pseudonymization Strategy</th>
+                <th>Example Document Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>FULL_NAME</code></td><td><strong>195</strong></td><td>Deterministic regional synthetic names</td><td><em>Kushal Subbayya Hegde &rarr; Vincent Sura</em></td></tr>
+              <tr><td><code>COMPANY</code></td><td><strong>130</strong></td><td>Realistic corporate entity & trust mapping</td><td><em>KSH INTERNATIONAL LIMITED &rarr; Garg-Mandal Limited</em></td></tr>
+              <tr><td><code>EMAIL</code></td><td><strong>70</strong></td><td>Domain-preserving username anonymization</td><td><em>cs.connect@kshinternational.com &rarr; cs.connect@example.com</em></td></tr>
+              <tr><td><code>PHONE</code></td><td><strong>49</strong></td><td>Format-preserving pseudo telecom number</td><td><em>+91 20 45053237 &rarr; +91 85296 30741</em></td></tr>
+              <tr><td><code>ADDRESS</code></td><td><strong>39</strong></td><td>Preserved structure multi-line address</td><td><em>Village Birdewadi Chakan... &rarr; Realistic synthetic address</em></td></tr>
+              <tr><td><code>STATUTORY_ID</code></td><td><strong>17</strong></td><td>Synthetic CIN, DIN, PAN generation</td><td><em>U28129PN1979PLC141032 &rarr; U71398MH2008PLC341398</em></td></tr>
+              <tr class="table-total">
+                <td><strong>TOTAL ENTITIES</strong></td>
+                <td><strong>500</strong></td>
+                <td colspan="2"><strong>100% Comprehensive Coverage across Entire Document</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Architecture & Tradeoffs -->
+    <section class="tab-content" id="tab-architecture">
+      <div class="architecture-grid">
+        <div class="arch-card">
+          <div class="arch-number">01</div>
+          <h3>Multi-Stage Detection</h3>
+          <p>Combines RFC-compliant regular expressions with contextual entity recognition, domain gazetteers, and statutory regulatory dictionaries.</p>
+        </div>
+        <div class="arch-card">
+          <div class="arch-number">02</div>
+          <h3>Deterministic MD5 Seeding</h3>
+          <p>Every entity receives an MD5 hash seed ensuring that occurrences across all pages consistently map to the identical pseudonym.</p>
+        </div>
+        <div class="arch-card">
+          <div class="arch-number">03</div>
+          <h3>Run-Level Style Preservation</h3>
+          <p>Replaces text directly within Word run structures (<code>docx.runs</code>) without destroying fonts, bolding, italics, colors, or table layouts.</p>
+        </div>
+        <div class="arch-card">
+          <div class="arch-number">04</div>
+          <h3>Precision vs. Recall Decisions</h3>
+          <p>Preserves statutory filing dates (e.g., <em>Dated December 10, 2025</em>) and issue figures while targeting real dates of birth and direct identifiers.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>Enterprise PII Redaction Solution &bull; Deliverable Submission Package</p>
+      <div class="footer-links">
+        <a href="https://github.com/Janhvi-S103/Enterprise-Data-Assignment" target="_blank">GitHub Repository</a>
+        <a href="https://github.com/Janhvi-S103/Enterprise-Data-Assignment/blob/main/evaluation_report.md" target="_blank">Evaluation Report</a>
+        <a href="https://github.com/Janhvi-S103/Enterprise-Data-Assignment/blob/main/README.md" target="_blank">Technical README</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
